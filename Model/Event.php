@@ -98,6 +98,23 @@ class Event
         return $this;
     }
 
+    public function newAlarm()
+    {
+        return new Alarm($this->event->newComponent('valarm'), $this->event);
+    }
+
+    public function attachAlarm(Alarm $alarm)
+    {
+        $this->event->setComponent($alarm->getAlarm());
+
+        return $this;
+    }
+
+    public function getProperty($prop)
+    {
+        return $this->event->getProperty($prop);
+    }
+
     public function getEvent()
     {
         return $this->event;

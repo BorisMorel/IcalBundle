@@ -4,7 +4,8 @@ namespace BOMO\IcalBundle\Provider;
 
 
 use BOMO\IcalBundle\Model\Calendar,
-    BOMO\IcalBundle\Model\Event
+    BOMO\IcalBundle\Model\Event,
+    BOMO\IcalBundle\Model\Alarm
     ;
 
 class IcsProvider
@@ -41,5 +42,10 @@ class IcsProvider
     public function createEvent()
     {
         return new Event($this->config);
+    }
+
+    public function createAlarm()
+    {
+        return new Alarm($this->config);
     }
 }
