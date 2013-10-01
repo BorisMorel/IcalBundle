@@ -12,9 +12,8 @@
         },
         {
             "name": "Philippe Le Van",
-            "email": "philippe.levan@kitpages.fr",
-            "role": "Developer",
-            "homepage": "https://github.com/philippe-levan"
+            "homepage": "https://twitter.com/plv",
+            "role": "Developer"
         }
     ],
     "support": {
@@ -22,12 +21,12 @@
     },
     "require": {
         "php": ">=5.3.3",
-        "symfony/symfony": ">2.0"
+        "symfony/framework-bundle": "~2.1"
     },
     "autoload": {
         "psr-0": { "BOMO\\IcalBundle": "" },
         "files": ["src/BOMO/IcalBundle/lib/kigkonsult/icalcreator/iCalcreator.class.php"]
     },
 
-    "target-dir": "IMAG/LdapBundle"
+    "target-dir": "BOMO/IcalBundle"
 }
