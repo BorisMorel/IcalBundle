@@ -63,15 +63,50 @@ class Event
         return $this;
     }
 
-    private function datetimeToArray(\Datetime $datetime)
+    public function setLocation($loc)
     {
-        $str = $datetime->format('Y-m-d H:i:s');
+        $this->event->setProperty('LOCATION', $loc); 
 
-        return date_parse($str);
+        return $this;
+    }
+
+    public function setDescription($desc)
+    {
+        $this->event->setProperty('description', $desc);
+ 
+        return $this;
+    }
+
+    public function setComment($comment)
+    {
+        $this->event->setProperty('comment', $comment);
+ 
+        return $this;
+    }
+
+    public function setAttendee($attendee)
+    {
+        $this->event->setProperty('attendee', $attendee);
+ 
+        return $this;
+    }
+    
+    public function setOrganizer($organizer)
+    {
+        $this->event->setProperty('organizer', $organizer);
+ 
+        return $this;
     }
 
     public function getEvent()
     {
         return $this->event;
+    }
+
+    private function datetimeToArray(\Datetime $datetime)
+    {
+        $str = $datetime->format('Y-m-d H:i:s');
+
+        return date_parse($str);
     }
 }
