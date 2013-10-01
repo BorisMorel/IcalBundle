@@ -46,6 +46,6 @@ class Calendar
 
     public function returnCalendar()
     {
-        return $this->cal->returnCalendar();
+        return utf8_encode($this->cal->createCalendar());
     }
 }
