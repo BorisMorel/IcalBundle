@@ -1,0 +1,33 @@
+{
+    "name": "bomo/ical-bundle",
+    "description": "Create ics url or file for Symfony 2",
+    "homepage": "http://github.com/BorisMorel/IcalBundle",
+    "license": "CeCILL",
+    "authors": [
+        {
+            "name": "Boris Morel",
+            "email": "boris.morel@imag.fr",
+            "role": "Developer",
+            "homepage" : "https://github.com/BorisMorel"
+        },
+        {
+            "name": "Philippe Le Van",
+            "email": "philippe.levan@kitpages.fr",
+            "role": "Developer",
+            "homepage": "https://github.com/philippe-levan"
+        }
+    ],
+    "support": {
+        "irc": "irc://irc.freenode.org/sf-grenoble"
+    },
+    "require": {
+        "php": ">=5.3.3",
+        "symfony/symfony": ">2.0"
+    },
+    "autoload": {
+        "psr-0": { "BOMO\\IcalBundle": "" },
+        "files": ["src/BOMO/IcalBundle/lib/kigkonsult/icalcreator/iCalcreator.class.php"]
+    },
+
+    "target-dir": "IMAG/LdapBundle"
+}
