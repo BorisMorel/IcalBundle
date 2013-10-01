@@ -1,5 +1,5 @@
 <?php
-namespace Kitpages\ChainBundle\Tests;
+namespace BOMO\IcalBundle\Tests;
 
 class PhpunitTest extends \PHPUnit_Framework_TestCase
 {
