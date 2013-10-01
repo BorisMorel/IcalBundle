@@ -25,7 +25,7 @@
     },
     "autoload": {
         "psr-0": { "BOMO\\IcalBundle": "" },
-        "files": ["src/BOMO/IcalBundle/lib/kigkonsult/icalcreator/iCalcreator.class.php"]
+        "files": ["lib/kigkonsult/icalcreator/iCalcreator.class.php"]
     },
 
     "target-dir": "BOMO/IcalBundle"
