@@ -133,7 +133,7 @@ $event->attachAlarm($alarm);
 this function setUniqueId($uniquId);
 this function setTimezone($tz);
 Calendar function createCalendar();
-Event function createEvent();
+[Event](#event) function createEvent();
 Alarm function createAlarm();
 ```
 
@@ -151,7 +151,7 @@ string function returnCalendar();
 
 * * * * *
 
-**Event**
+<a id="event">**Event**
 ```php
 Event function __construct(mixed $param);
 this function setStartDate(Datetime $date);
