@@ -103,6 +103,7 @@ $bundles = array(
 ## User's Guide
 All objects can be managed regardless by the provider. But the object need to be attached.
 >Event attached to Calendar
+
 >Alarm attached to Event
 
 To simplify the use, the objects are a proxy method to create a child feature.
@@ -113,8 +114,10 @@ $alarm
     [...]
     ;
 ```
+
 Is stricly same that
-```
+
+```php
 $alarm = $provider->createAlarm();
 $alarm
     ->set[...]
