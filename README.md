@@ -128,18 +128,18 @@ $event->attachAlarm($alarm);
 
 ## Object reference
 
-**Provider**
+<a id="provider">**Provider**
 ```php
 this function setUniqueId($uniquId);
 this function setTimezone($tz);
 Calendar function createCalendar();
-[Event](#event) function createEvent();
+Event function createEvent();
 Alarm function createAlarm();
 ```
 
 * * * * *
 
-**Calendar**
+<a id="calendar">**Calendar**
 ```php
 Calendar function __construct(array $config);
 this function setName($name);
@@ -171,7 +171,7 @@ vevent function getEvent();
 
 * * * * *
 
-**Alarm**
+<a id="alarm">**Alarm**
 ```php
 Alarm function __construct(mixed $param);
 this function setAction($action); //Currently, only 'display' action is setted.
