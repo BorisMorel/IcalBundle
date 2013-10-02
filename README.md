@@ -128,7 +128,7 @@ string function returnCalendar();
 
 * * * * *
 
-**Class Event**
+**Event**
 ```php
 Event function __construct(mixed $param);
 this function setStartDate(Datetime $date);
@@ -148,7 +148,7 @@ vevent function getEvent();
 
 * * * * *
 
-**Class Alarm**
+**Alarm**
 ```php
 Alarm function __construct(mixed $param);
 this function setAction($action); //Currently, only 'display' action is setted.
