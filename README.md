@@ -1,31 +1,67 @@
 BOMOIcalBundle
 ==============
 
-This bundle is used for... // TODO //
+This bundle is used to create an ics file or url to populate a shared calendar with events.
 
 ## Overview
 
 ```php
-$icsManager = $this->get('bomo_ical.ics_provider');
+<?php
+public function getIcs()
+{
+    $icsManager = $this->get('bomo_ical.ics_provider');
+    
+    $icsManager
+        ->setUniqueId('imag.fr')
+        ->setTimezone('Europe/Paris')
+        ;
+    
+    $cal = $icsManager->createCalendar();
+    
+    $cal
+        ->setName('My cal1')
+        ->setDescription('Foo')
+        ;
+    
+    $datetime = new \Datetime('now');
+    $event = $cal->newEvent();
+    $event
+        ->setStartDate($datetime)
+        ->setEndDate($datetime->modify('+5 hours'))
+        ->setName('Event 1')
+        ->setDescription('Desc for event')
+        ->setAttendee('foo@bar.me')
+        ->setAttendee('John Do')
+        ;
 
-$icsManager
-    ->setUniqueId('imag.fr')
-    ->setTimezone('Europe/Paris')
-    ;
+    $alarm = $event->newAlarm();
+    $alarm
+        ->setAction('display')
+        ->setDescription($event->getProperty('description'))
+        ->setTrigger('-PT2H') //See Dateinterval string format
+        ;
+    
+    // All Day event
+    $event = $cal->newEvent();
+    $event
+        ->isAllDayEvent()
+        ->setStartDate($datetime)
+        ->setEndDate($datetime->modify('+10 days'))
+        ->setName('All day event')
+        ->setDescription('All day visualisation')
+        ;
 
-$cal = $icsManager->createCalendar();
+    $calStr = $cal->returnCalendar();
 
-$cal
-    ->setName('Test')
-    ->setDescription('Desc')
-    ;
-
-$event = $cal->newEvent();
-$event
-    ->setStartDate(new \Datetime('now'))
-    ->setEndDate(new \Datetime('+5 hours'))
-    ->setName('MON EVENT ATTACH')
-    ;
+    return new Response(
+        $calStr,
+        200,
+        array(
+            'Content-Type' => 'text/calendar; charset=utf-8',
+            'Content-Disposition' => 'attachment; filename="calendar.ics"',
+        )
+    );
+}
 ```
 
 ## Versions
@@ -34,7 +70,7 @@ $event
 
 ## Actual state
 
-This bundle is in beta
+This bundle is in **beta**
 
 ## Installation
 
@@ -66,10 +102,61 @@ $bundles = array(
 
 ## User's Guide
 
+## Object reference
 
+**Provider**
+```php
+this function setUniqueId($uniquId);
+this function setTimezone($tz);
+Calendar function createCalendar();
+Event function createEvent();
+Alarm function createAlarm();
+
+```
+
+* * * * *
+
+**Calendar**
+```php
+Calendar function __construct(array $config);
+this function setName($name);
+this function setDescription($desc);
+Event function newEvent(); //Directly attached to this Calendar
+this function attachEvent(Event $event)
+string function returnCalendar();
+```
+
+* * * * *
+
+**Class Event**
+```php
+Event function __construct(mixed $param);
+this function setStartDate(Datetime $date);
+this function setEndDate(Datetime $date);
+this function isAllDayEvent();
+this function setName($name);
+this function setLocation($loc);
+this function setDescription($desc);
+this function setComment($comment);
+this function setAttendee($attendee);
+this function setOrganizer($org);
+Alarm function newAlarm(); //Directly attached to this Event
+this function attachAlarm(Alarm $alarm);
+mixed function getProperty($prop);
+vevent function getEvent();
+```
+
+* * * * *
+
+**Class Alarm**
+```php
+Alarm function __construct(mixed $param);
+this function setAction($action); //Currently, only 'display' action is setted.
+this function setDescription($desc);
+this function setTrigger($trigger);
+valarm function getAlarm();
+```
 
 ## Configuration example
 
-``` yaml
-```
-
+Currently, this bundle doesn't required any configuration section.
