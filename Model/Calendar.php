@@ -46,6 +46,12 @@ class Calendar
 
     public function returnCalendar()
     {
-        return utf8_encode($this->cal->createCalendar());
+        $str = $this->cal->createCalendar();
+
+        if (false === mb_check_encoding($str, 'UTF-8')) {
+            $str = utf8_encode($str);
+        } 
+
+        return $str;
     }
 }
