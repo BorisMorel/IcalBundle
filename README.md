@@ -9,14 +9,15 @@ This bundle is used to create an ics file or url to populate a shared calendar w
 <?php
 public function getIcs()
 {
-    $icsManager = $this->get('bomo_ical.ics_provider');
+    $provider = $this->get('bomo_ical.ics_provider');
     
-    $icsManager
-        ->setUniqueId('imag.fr')
-        ->setTimezone('Europe/Paris')
+    $tz = $provider->createTimezone();
+    $tz
+        ->setTzid('Europe/Paris')
+        ->setProperty('X-LIC-LOCATION', $tz->getTzid())
         ;
-    
-    $cal = $icsManager->createCalendar();
+            
+    $cal = $provider->createCalendar($tz);
     
     $cal
         ->setName('My cal1')
@@ -66,11 +67,13 @@ public function getIcs()
 
 ## Versions
 
-2013/10/01 : first version
+ - 2013/10/01 : first version
+ - 2013/10/02 : Fixx issue #2
+ - 2013/10/07 : Fix issue #1
 
 ## Actual state
 
-This bundle is in **beta**
+This bundle is in **stable** state;
 
 ## Installation
 
@@ -79,7 +82,7 @@ Add BOMOIcalBundle in your composer.json
 ```js
 {
     "require": {
-        "bomo/ical-bundle": "*"
+        "bomo/ical-bundle": "1.0.*"
     }
 }
 ```
@@ -130,11 +133,21 @@ $event->attachAlarm($alarm);
 
 ###Provider
 ```php
-this function setUniqueId($uniquId);
-this function setTimezone($tz);
+Timezone function createTimezone();
 Calendar function createCalendar();
 Event function createEvent();
 Alarm function createAlarm();
+```
+
+* * * * *
+
+###Timezone
+```php
+Timezone function __construct(array $config=null);
+string function getTzid();
+this function setTzid($tz);
+this function setProperty($name, $value);
+vtimezone function getTimezone();
 ```
 
 * * * * *
@@ -147,6 +160,7 @@ this function setDescription($desc);
 Event function newEvent(); //Directly attached to this Calendar
 this function attachEvent(Event $event)
 string function returnCalendar();
+vcalendar function getCalendar();
 ```
 
 * * * * *
