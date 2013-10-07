@@ -14,14 +14,12 @@ class Event
      */
     private $allDayEvent;
 
-    public function __construct($param)
+    public function __construct($object = null)
     {
-        if (is_array($param)) {
-            $this->event = new \vevent($param);
-        } elseif ($param instanceOf \vevent) {
-            $this->event = $param;
+        if ($object instanceOf \vevent) {
+            $this->event = $object;
         } else {
-            throw new InvalidArgumentException('Invalid constructor parameter');
+            $this->event = new \vevent();
         }
     }
 

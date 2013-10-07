@@ -3,49 +3,31 @@
 namespace BOMO\IcalBundle\Provider;
 
 
-use BOMO\IcalBundle\Model\Calendar,
+use BOMO\IcalBundle\Model\Timezone,
+    BOMO\IcalBundle\Model\Calendar,
     BOMO\IcalBundle\Model\Event,
     BOMO\IcalBundle\Model\Alarm
     ;
 
 class IcsProvider
 {
-    /**
-     * Config array
-     */
-    private $config;
-
-    public function __construct()
+    public function createTimezone(array $config = array())
     {
-        $this->config = array();
+        return new Timezone($config);
     }
 
-    public function setUniqueId($uniqId)
+    public function createCalendar(Timezone $tz)
     {
-        $this->config['unique_id'] = $uniqId;
-
-        return $this;
-    }
-
-    public function setTimezone($tz)
-    {
-        $this->config['TZID'] = $tz;
-
-        return $this;
-    }
-
-    public function createCalendar()
-    {
-        return new Calendar($this->config);
+        return new Calendar($tz);
     }
 
     public function createEvent()
     {
-        return new Event($this->config);
+        return new Event();
     }
 
     public function createAlarm()
     {
-        return new Alarm($this->config);
+        return new Alarm();
     }
 }

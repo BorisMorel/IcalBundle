@@ -9,13 +9,30 @@ class Calendar
      */
     private $cal;
 
-    public function __construct(array $config)
-    {
-        $this->cal = new \vcalendar($config);
-        $this->cal->setProperty("method", "PUBLISH");
-        $this->cal->setProperty("x-wr-timezone", $config['TZID']);
+    /**
+     * Timezone object
+     */
+    private $tz;
 
-        \iCalUtilityFunctions::createTimezone($this->cal, $config['TZID'], array("x-lic-location" => $config['TZID']));
+    public function __construct(Timezone $tz)
+    {
+        $this->tz = $tz;
+        $this->cal = new \vcalendar();
+        $this->cal->setProperty("x-wr-timezone", $tz->getTzid());
+    }
+
+    public function setMethod($method)
+    {
+        $this->cal->setProperty("method", $method);
+
+        return $this;
+    }
+
+    public function setUniqueId($uniqId)
+    {
+        $this->cal->unique_id = $uniqId;
+
+        return $this;
     }
 
     public function setName($name)
@@ -42,6 +59,11 @@ class Calendar
         $this->cal->setComponent($event->getEvent());
 
         return $this;
+    }
+
+    public function getCalendar()
+    {
+        return $this->cal;
     }
 
     public function returnCalendar()

@@ -9,16 +9,13 @@ class Alarm
      */
     private $alarm;
 
-    public function __construct($param)
+    public function __construct($object = null)
     {
-        if (is_array($param)) {
-            $this->alarm = new \valarm($param);
-            
-        } elseif ($param instanceOf \valarm) {
-            $this->alarm = $param;
+        if ($object instanceOf \valarm) {
+            $this->alarm = $object;
 
         } else {
-            throw new InvalidArgumentException('Invalid constructor parameter');
+            $this->alarm = new \valarm();
             
         }
         
