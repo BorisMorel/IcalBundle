@@ -12,7 +12,7 @@ class Event
     /**
      * To ignore hours
      */
-    private $allDayEvent;
+    private $isAllDayEvent;
 
     public function __construct($object = null)
     {
@@ -26,7 +26,7 @@ class Event
     public function setStartDate(\Datetime $date)
     {
         $params = array();
-        if (true === $this->allDayEvent) {
+        if (true === $this->isAllDayEvent) {
             $params = array("VALUE" => "DATE");
         }
 
@@ -38,7 +38,7 @@ class Event
     public function setEndDate(\Datetime $date)
     {
         $params = array();
-        if (true === $this->allDayEvent) {
+        if (true === $this->isAllDayEvent) {
             $params = array("VALUE" => "DATE");
         }
 
@@ -47,9 +47,9 @@ class Event
         return $this;
     }
 
-    public function isAllDayEvent()
+    public function setIsAllDayEvent($bool = true)
     {
-        $this->allDayEvent = true;
+        $this->isAllDayEvent = $bool;
 
         return $this;
     }
