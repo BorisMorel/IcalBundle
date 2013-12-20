@@ -122,6 +122,11 @@ class Event
     {
         $str = $datetime->format('Y-m-d H:i:s');
 
-        return date_parse($str);
+        $date = date_parse($str);
+        $date['min'] = $date['minute'];
+        $date['sec'] = $date['second'];
+        unset($date['minute'], $date['second']);
+
+        return $date;
     }
 }
