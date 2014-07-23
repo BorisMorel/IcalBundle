@@ -96,6 +96,13 @@ class Event
         return $this;
     }
 
+    public function setStatus($status)
+    {
+        $this->event->setProperty('status', $status);
+
+        return $this;
+    }
+
     public function newAlarm()
     {
         return new Alarm($this->event->newComponent('valarm'), $this->event);
