@@ -16,8 +16,12 @@ class IcsProvider
         return new Timezone($config);
     }
 
-    public function createCalendar(Timezone $tz)
+    public function createCalendar(Timezone $tz = null)
     {
+        if (is_null($tz)) {
+            $tz = $this->createTimezone();
+        }        
+        
         return new Calendar($tz);
     }
 
