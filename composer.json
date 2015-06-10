@@ -27,6 +27,10 @@
         "psr-0": { "BOMO\\IcalBundle": "" },
         "files": ["lib/kigkonsult/icalcreator/iCalcreator.class.php"]
     },
-
-    "target-dir": "BOMO/IcalBundle"
+    "target-dir": "BOMO/IcalBundle",
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.1.x-dev"
+        }
+    }
 }
