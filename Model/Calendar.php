@@ -66,9 +66,9 @@ class Calendar
         return $this->cal;
     }
 
-    public function returnCalendar()
+    public function returnCalendar($uid = null)
     {
-        $str = $this->cal->createCalendar();
+        $str = $this->cal->createCalendar($uid);
 
         if (false === mb_check_encoding($str, 'UTF-8')) {
             $str = utf8_encode($str);
