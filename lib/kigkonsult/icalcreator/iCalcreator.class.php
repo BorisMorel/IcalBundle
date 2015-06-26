@@ -1880,7 +1880,7 @@ class vcalendar {
  * @since 2.10.16 - 2011-10-28
  * @return string
  */
-  function createCalendar() {
+  function createCalendar($uid = null) {
     $calendarInit = $calendarxCaldecl = $calendarStart = $calendar = '';
     switch( $this->format ) {
       case 'xcal':
@@ -1904,7 +1904,7 @@ class vcalendar {
     foreach( $this->components as $component ) {
       if( empty( $component )) continue;
       $component->setConfig( $this->getConfig(), FALSE, TRUE );
-      $calendar .= $component->createComponent( $this->xcaldecl );
+      $calendar .= $component->createComponent( $this->xcaldecl, $uid );
     }
     if(( 'xcal' == $this->format ) && ( 0 < count( $this->xcaldecl ))) { // xCal only
       $calendarInit .= ' [';
@@ -4380,9 +4380,9 @@ class calendarComponent {
  * @since 0.9.7 - 2006-11-20
  * @return string
  */
-  function createUid() {
+  function createUid($uid = null) {
     if( 0 >= count( $this->uid ))
-      $this->_makeuid();
+      $this->_makeuid($uid);
     $attributes = $this->_createParams( $this->uid['params'] );
     return $this->_createElement( 'UID', $attributes, $this->uid['value'] );
   }
@@ -4393,7 +4393,7 @@ class calendarComponent {
  * @since 2.2.7 - 2007-09-04
  * @return void
  */
-  function _makeUid() {
+  function _makeUid($uid = null) {
     $date   = date('Ymd\THisT');
     $unique = substr(microtime(), 2, 4);
     $base   = 'aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpPrRsStTuUvVxXuUvVwWzZ1234567890';
@@ -4403,8 +4403,11 @@ class calendarComponent {
     $str    = null;
     for( $p = 0; $p < $length; $p++ )
       $unique .= $base{mt_rand( $start, $end )};
-    $this->uid = array( 'params' => null );
-    $this->uid['value']  = $date.'-'.$unique.'@'.$this->getConfig( 'unique_id' );
+    if($uid !== null) {
+        $this->uid['value']  = $uid.'@'.$this->getConfig( 'unique_id' );
+    } else {
+        $this->uid['value']  = $date.'-'.$unique.'@'.$this->getConfig( 'unique_id' );
+    };
   }
 /**
  * set calendar component property uid
@@ -6491,10 +6494,10 @@ class vevent extends calendarComponent {
  * @param array $xcaldecl
  * @return string
  */
-  function createComponent( &$xcaldecl ) {
+  function createComponent( &$xcaldecl, $uid = null ) {
     $objectname    = $this->_createFormat();
     $component     = $this->componentStart1.$objectname.$this->componentStart2.$this->nl;
-    $component    .= $this->createUid();
+    $component    .= $this->createUid($uid);
     $component    .= $this->createDtstamp();
     $component    .= $this->createAttach();
     $component    .= $this->createAttendee();
