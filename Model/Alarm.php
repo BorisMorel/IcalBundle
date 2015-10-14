@@ -16,15 +16,15 @@ class Alarm
 
         } else {
             $this->alarm = new \valarm();
-            
+
         }
-        
+
     }
 
     public function setAction($action)
     {
         switch($action) {
-        case 'display':
+        case 'DISPLAY':
             $this->alarm->setProperty('description', 'Need to be setted');
             $this->alarm->setProperty('trigger', '-PT1H', array('VALUE' => 'DURATION'));
             break;
