@@ -21,13 +21,12 @@
     },
     "require": {
         "php": ">=5.3.3",
-        "symfony/framework-bundle": "~2.1"
+        "symfony/framework-bundle": "~2.1|~3.0"
     },
     "autoload": {
-        "psr-0": { "BOMO\\IcalBundle": "" },
+        "psr-4": { "BOMO\\IcalBundle\\": "" },
         "files": ["lib/kigkonsult/icalcreator/iCalcreator.class.php"]
     },
-    "target-dir": "BOMO/IcalBundle",
     "extra": {
         "branch-alias": {
             "dev-master": "1.1.x-dev"
