@@ -103,6 +103,27 @@ class Event
         return $this;
     }
 
+    public function setTransparent($name)
+    {
+        $this->event->setProperty('TRANSP', $name);
+
+        return $this;
+    }
+
+    public function setPriority($value)
+    {
+        $this->event->setProperty('PRIORITY', $value);
+
+        return $this;
+    }
+
+    public function setSequence($value)
+    {
+        $this->event->setProperty('SEQUENCE', $value);
+
+        return $this;
+    }
+
     public function newAlarm()
     {
         return new Alarm($this->event->newComponent('valarm'), $this->event);
