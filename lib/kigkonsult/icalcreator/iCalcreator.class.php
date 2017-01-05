@@ -87,7 +87,7 @@ class vcalendar {
      * @param array $config
      * @return void
      */
-    function vcalendar ( $config = array()) {
+    function __construct ( $config = array()) {
         $this->_makeVersion();
         $this->calscale   = null;
         $this->method     = null;
@@ -621,8 +621,8 @@ class vcalendar {
                 break;
             case 'FILEINFO':
                 return array( $this->getConfig( 'directory' )
-                              , $this->getConfig( 'filename' )
-                              , $this->getConfig( 'filesize' ));
+                , $this->getConfig( 'filename' )
+                , $this->getConfig( 'filesize' ));
                 break;
             case 'FILENAME':
                 if( empty( $this->filename ) && ( '0' != $this->filename )) {
@@ -2110,7 +2110,7 @@ class calendarComponent {
      * @author Kjell-Inge Gustafsson, kigkonsult <ical@kigkonsult.se>
      * @since 2.9.6 - 2011-05-17
      */
-    function calendarComponent() {
+    function __construct() {
         $this->objName         = ( isset( $this->timezonetype )) ?
             strtolower( $this->timezonetype )  :  get_class ( $this );
         $this->uid             = array();
@@ -2939,7 +2939,7 @@ class calendarComponent {
         }
         else
             $this->duration = array( 'value' => iCalUtilityFunctions::_duration2arr( array( 'week' => $week, 'day' => $day, 'hour' => $hour, 'min' => $min, 'sec' => $sec ))
-                                     , 'params' => iCalUtilityFunctions::_setParams( $params ));
+            , 'params' => iCalUtilityFunctions::_setParams( $params ));
         return TRUE;
     }
     /*********************************************************************************/
@@ -4165,12 +4165,12 @@ class calendarComponent {
             $sec  = ( $sec  ) ? $sec  : 0;
             $this->trigger = array( 'params' => $params );
             $this->trigger['value'] = array( 'year'  => $year
-                                             , 'month' => $month
-                                             , 'day'   => $day
-                                             , 'hour'  => $hour
-                                             , 'min'   => $min
-                                             , 'sec'   => $sec
-                                             , 'tz'    => 'Z' );
+            , 'month' => $month
+            , 'day'   => $day
+            , 'hour'  => $hour
+            , 'min'   => $min
+            , 'sec'   => $sec
+            , 'tz'    => 'Z' );
             return TRUE;
         }
         elseif(( empty( $year ) && empty( $month )) &&    // duration
@@ -4583,8 +4583,8 @@ class calendarComponent {
         $attachfmttype      = null;
         if (( 'xcal' == $this->format) && ( 'x-' == substr( $label, 0, 2 ))) {
             $this->xcaldecl[] = array( 'xmldecl'  => 'ELEMENT'
-                                       , 'ref'      => $label
-                                       , 'type2'    => '(#PCDATA)' );
+            , 'ref'      => $label
+            , 'type2'    => '(#PCDATA)' );
         }
         if( !empty( $attributes ))  {
             $attributes  = trim( $attributes );
@@ -4636,11 +4636,11 @@ class calendarComponent {
             $pos = strrpos($content, "/");
             $docname = ( $pos !== false) ? substr( $content, (1 - strlen( $content ) + $pos )) : $content;
             $this->xcaldecl[] = array( 'xmldecl'  => 'ENTITY'
-                                       , 'uri'      => $docname
-                                       , 'ref'      => 'SYSTEM'
-                                       , 'external' => $content
-                                       , 'type'     => 'NDATA'
-                                       , 'type2'    => 'BINERY' );
+            , 'uri'      => $docname
+            , 'ref'      => 'SYSTEM'
+            , 'external' => $content
+            , 'type'     => 'NDATA'
+            , 'type2'    => 'BINERY' );
             $attributes .= ( empty( $attributes )) ? ' ' : $this->attributeDelimiter.' ';
             $attributes .= 'uri="'.$docname.'"';
             $content = null;
@@ -4835,8 +4835,8 @@ class calendarComponent {
                         break;
                     }
                     default: {
-                    $content2 .= ";$rulelabel=$rulevalue";
-                    break;
+                        $content2 .= ";$rulelabel=$rulevalue";
+                        break;
                     }
                 }
             }
@@ -5078,7 +5078,7 @@ class calendarComponent {
         if( $this->_notExistProp( $propName )) return FALSE;
         $propName = strtoupper( $propName );
         if( in_array( $propName, array( 'ATTACH',   'ATTENDEE', 'CATEGORIES', 'COMMENT',   'CONTACT', 'DESCRIPTION',    'EXDATE', 'EXRULE',
-                                        'FREEBUSY', 'RDATE',    'RELATED-TO', 'RESOURCES', 'RRULE',   'REQUEST-STATUS', 'TZNAME', 'X-PROP'  ))) {
+            'FREEBUSY', 'RDATE',    'RELATED-TO', 'RESOURCES', 'RRULE',   'REQUEST-STATUS', 'TZNAME', 'X-PROP'  ))) {
             if( !$propix )
                 $propix = ( isset( $this->propdelix[$propName] ) && ( 'X-PROP' != $propName )) ? $this->propdelix[$propName] + 2 : 1;
             $this->propdelix[$propName] = --$propix;
@@ -5384,7 +5384,7 @@ class calendarComponent {
         if( $this->_notExistProp( $propName )) return FALSE;
         $propName = ( $propName ) ? strtoupper( $propName ) : 'X-PROP';
         if( in_array( $propName, array( 'ATTACH',   'ATTENDEE', 'CATEGORIES', 'COMMENT',   'CONTACT', 'DESCRIPTION',    'EXDATE', 'EXRULE',
-                                        'FREEBUSY', 'RDATE',    'RELATED-TO', 'RESOURCES', 'RRULE',   'REQUEST-STATUS', 'TZNAME', 'X-PROP'  ))) {
+            'FREEBUSY', 'RDATE',    'RELATED-TO', 'RESOURCES', 'RRULE',   'REQUEST-STATUS', 'TZNAME', 'X-PROP'  ))) {
             if( !$propix )
                 $propix = ( isset( $this->propix[$propName] )) ? $this->propix[$propName] + 2 : 1;
             $this->propix[$propName] = --$propix;
@@ -5881,13 +5881,13 @@ class calendarComponent {
         /* concatenate property values spread over several lines */
         $lastix    = -1;
         $propnames = array( 'action', 'attach', 'attendee', 'categories', 'comment', 'completed'
-                            , 'contact', 'class', 'created', 'description', 'dtend', 'dtstart'
-                            , 'dtstamp', 'due', 'duration', 'exdate', 'exrule', 'freebusy', 'geo'
-                            , 'last-modified', 'location', 'organizer', 'percent-complete'
-                            , 'priority', 'rdate', 'recurrence-id', 'related-to', 'repeat'
-                            , 'request-status', 'resources', 'rrule', 'sequence', 'status'
-                            , 'summary', 'transp', 'trigger', 'tzid', 'tzname', 'tzoffsetfrom'
-                            , 'tzoffsetto', 'tzurl', 'uid', 'url', 'x-' );
+        , 'contact', 'class', 'created', 'description', 'dtend', 'dtstart'
+        , 'dtstamp', 'due', 'duration', 'exdate', 'exrule', 'freebusy', 'geo'
+        , 'last-modified', 'location', 'organizer', 'percent-complete'
+        , 'priority', 'rdate', 'recurrence-id', 'related-to', 'repeat'
+        , 'request-status', 'resources', 'rrule', 'sequence', 'status'
+        , 'summary', 'transp', 'trigger', 'tzid', 'tzname', 'tzoffsetfrom'
+        , 'tzoffsetto', 'tzurl', 'uid', 'url', 'x-' );
         $proprows  = array();
         for( $i = 0; $i < count( $this->unparsed ); $i++ ) { // concatenate lines
             $line = rtrim( $this->unparsed[$i], $nl );
@@ -6105,11 +6105,11 @@ class calendarComponent {
                                 break;
                             }
                             default: {
-                            $value4 = explode( ',', $value3[1] );
-                            if( 1 < count( $value4 ))
-                                $value3[1] = $value4;
-                            $recur[$rulelabel] = $value3[1];
-                            break;
+                                $value4 = explode( ',', $value3[1] );
+                                if( 1 < count( $value4 ))
+                                    $value3[1] = $value4;
+                                $recur[$rulelabel] = $value3[1];
+                                break;
                             }
                         } // end - switch $rulelabel
                     } // end - foreach( $values.. .
@@ -6443,7 +6443,7 @@ class vevent extends calendarComponent {
      * @param  array $config
      * @return void
      */
-    function vevent( $config = array()) {
+    function __construct( $config = array()) {
         $this->calendarComponent();
 
         $this->attach          = '';
@@ -6590,7 +6590,7 @@ class vtodo extends calendarComponent {
      * @param array $config
      * @return void
      */
-    function vtodo( $config = array()) {
+    function __construct( $config = array()) {
         $this->calendarComponent();
 
         $this->attach          = '';
@@ -6729,7 +6729,7 @@ class vjournal extends calendarComponent {
      * @param array $config
      * @return void
      */
-    function vjournal( $config = array()) {
+    function __construct( $config = array()) {
         $this->calendarComponent();
 
         $this->attach          = '';
@@ -6839,7 +6839,7 @@ class vfreebusy extends calendarComponent {
      * @param array $config
      * @return void
      */
-    function vfreebusy( $config = array()) {
+    function __construct( $config = array()) {
         $this->calendarComponent();
 
         $this->attendee        = '';
@@ -6921,7 +6921,7 @@ class valarm extends calendarComponent {
      * @param array $config
      * @return void
      */
-    function valarm( $config = array()) {
+    function __construct( $config = array()) {
         $this->calendarComponent();
 
         $this->action          = '';
@@ -7004,7 +7004,7 @@ class vtimezone extends calendarComponent {
      * @param array $config
      * @return void
      */
-    function vtimezone( $timezonetype=FALSE, $config = array()) {
+    function __construct( $timezonetype=FALSE, $config = array()) {
         if( is_array( $timezonetype )) {
             $config       = $timezonetype;
             $timezonetype = FALSE;
@@ -7410,9 +7410,9 @@ class iCalUtilityFunctions {
             else {                        // or we use the timezone identifier to BUILD the standard tz info (?)
                 $date = new DateTime( 'now', new DateTimeZone( $timezone ));
                 $transTemp[0] = array( 'time'       => $date->format( 'Y-m-d\TH:i:s O' )
-                                       , 'offset'     => $date->format( 'Z' )
-                                       , 'offsetfrom' => $date->format( 'Z' )
-                                       , 'isdst'      => FALSE );
+                , 'offset'     => $date->format( 'Z' )
+                , 'offsetfrom' => $date->format( 'Z' )
+                , 'isdst'      => FALSE );
             }
         }
         unset( $transitions, $date, $prevTrans );
@@ -8660,11 +8660,11 @@ class iCalUtilityFunctions {
         }
         else {
             $input['value']  = array( 'year'  => $year
-                                      , 'month' => $month
-                                      , 'day'   => $day
-                                      , 'hour'  => $hour
-                                      , 'min'   => $min
-                                      , 'sec'   => $sec );
+            , 'month' => $month
+            , 'day'   => $day
+            , 'hour'  => $hour
+            , 'min'   => $min
+            , 'sec'   => $sec );
             if(  isset( $tz )) $input['value']['tz'] = $tz;
             if(( isset( $tz ) && iCalUtilityFunctions::_isOffset( $tz )) ||
                 ( isset( $input['params']['TZID'] ) && iCalUtilityFunctions::_isOffset( $input['params']['TZID'] ))) {
@@ -8941,8 +8941,8 @@ class iCalUtilityFunctions {
         if( !ctype_digit( substr( $work, 0, 8 )))
             return FALSE;
         $temp = array( 'year'  => (int) substr( $work,  0, 4 )
-                       , 'month' => (int) substr( $work,  4, 2 )
-                       , 'day'   => (int) substr( $work,  6, 2 ));
+        , 'month' => (int) substr( $work,  4, 2 )
+        , 'day'   => (int) substr( $work,  6, 2 ));
         if( !checkdate( $temp['month'], $temp['day'], $temp['year'] ))
             return FALSE;
         if( 8 == strlen( $work )) {
