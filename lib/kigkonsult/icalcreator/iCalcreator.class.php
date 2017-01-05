@@ -87,7 +87,7 @@ class vcalendar {
      * @param array $config
      * @return void
      */
-    function vcalendar ( $config = array()) {
+    function __construct ( $config = array()) {
         $this->_makeVersion();
         $this->calscale   = null;
         $this->method     = null;
