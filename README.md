@@ -10,20 +10,20 @@ This bundle is used to create an ics file or url to populate a shared calendar w
 public function getIcs()
 {
     $provider = $this->get('bomo_ical.ics_provider');
-    
+
     $tz = $provider->createTimezone();
     $tz
         ->setTzid('Europe/Paris')
         ->setProperty('X-LIC-LOCATION', $tz->getTzid())
         ;
-            
+
     $cal = $provider->createCalendar($tz);
-    
+
     $cal
         ->setName('My cal1')
         ->setDescription('Foo')
         ;
-    
+
     $datetime = new \Datetime('now');
     $event = $cal->newEvent();
     $event
@@ -41,7 +41,7 @@ public function getIcs()
         ->setDescription($event->getProperty('description'))
         ->setTrigger('-PT2H') //See Dateinterval string format
         ;
-    
+
     // All Day event
     $event = $cal->newEvent();
     $event
@@ -68,8 +68,9 @@ public function getIcs()
 ## Versions
 
  - 2013/10/01 : first version
- - 2013/10/02 : Fixx issue #2
+ - 2013/10/02 : Fix issue #2
  - 2013/10/07 : Fix issue #1
+ - 2017/01/05 : Merge pull request #15; Now Kigkonsult is required by composer
 
 ## Actual state
 
@@ -79,13 +80,30 @@ This bundle is in **stable** state;
 
 Add BOMOIcalBundle in your composer.json
 
+**Note:**
+> Kigkonsult is require on version `dev-master`. You need to change your `minimum-stability` or require explicitly `kigkonsult/icalcreator` to prevent composer dependencies errors.
+
 ```js
 {
     "require": {
         "bomo/ical-bundle": "1.0.*"
+    },
+    "minimum-stability": "dev"
+}
+```
+
+or
+
+```js
+{
+    "require": {
+        "bomo/ical-bundle": "1.0.*",
+        "kigkonsult/icalcreator": "dev-master"
     }
 }
 ```
+
+
 
 Now tell composer to download the bundle by running the step:
 
