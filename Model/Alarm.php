@@ -30,7 +30,7 @@ class Alarm
             break;
 
         default:
-            throw new \InvalidArgumentException('Only [display] options are available');
+            throw new \InvalidArgumentException('Only [DISPLAY] options are available');
             break;
         }
 

@@ -37,7 +37,7 @@ public function getIcs()
 
     $alarm = $event->newAlarm();
     $alarm
-        ->setAction('display')
+        ->setAction('DISPLAY')
         ->setDescription($event->getProperty('description'))
         ->setTrigger('-PT2H') //See Dateinterval string format
         ;
@@ -206,7 +206,7 @@ vevent function getEvent();
 ###Alarm
 ```php
 Alarm function __construct(mixed $param);
-this function setAction($action); //Currently, only 'display' action is setted.
+this function setAction($action); //Currently, only 'DISPLAY' action is setted.
 this function setDescription($desc);
 this function setTrigger($trigger);
 valarm function getAlarm();
