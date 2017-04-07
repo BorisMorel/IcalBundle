@@ -71,6 +71,7 @@ public function getIcs()
  - 2013/10/02 : Fix issue #2
  - 2013/10/07 : Fix issue #1
  - 2017/01/05 : Merge pull request #15; Now Kigkonsult is required by composer
+ - 2017/04/07 : Merge pull request #18
 
 ## Actual state
 
