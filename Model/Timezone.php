@@ -9,9 +9,9 @@ class Timezone
      */
     private $tz;
     
-    public function __construct(array $config = array())
+    public function __construct(array $config = array(), $timezoneType = FALSE)
     {
-        $this->tz = new \vtimezone($config);
+        $this->tz = new \vtimezone($timezoneType, $config);
     }
 
     public function getTzid()
