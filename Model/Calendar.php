@@ -19,6 +19,7 @@ class Calendar
         $this->tz = $tz;
         $this->cal = new \vcalendar();
         $this->cal->setProperty("x-wr-timezone", $tz->getTzid());
+        $this->cal->addComponent($tz->getTimezone());
     }
 
     public function setMethod($method)
