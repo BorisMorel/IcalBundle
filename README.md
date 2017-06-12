@@ -73,7 +73,8 @@ public function getIcs()
  - 2017/01/05 : Merge pull request #15; Now Kigkonsult is required by composer
  - 2017/04/07 : Merge pull request #18
  - 2017/06/07 : Merge pull request #20
- 
+ - 2017/06/08 : Merge pull request #19
+
 ## Actual state
 
 This bundle is in **stable** state;
@@ -82,30 +83,13 @@ This bundle is in **stable** state;
 
 Add BOMOIcalBundle in your composer.json
 
-**Note:**
-> Kigkonsult is require on version `dev-master`. You need to change your `minimum-stability` or require explicitly `kigkonsult/icalcreator` to prevent composer dependencies errors.
-
 ```js
 {
     "require": {
         "bomo/ical-bundle": "1.0.*"
-    },
-    "minimum-stability": "dev"
-}
-```
-
-or
-
-```js
-{
-    "require": {
-        "bomo/ical-bundle": "1.0.*",
-        "kigkonsult/icalcreator": "dev-master"
     }
 }
 ```
-
-
 
 Now tell composer to download the bundle by running the step:
 
