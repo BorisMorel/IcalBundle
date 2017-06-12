@@ -1,7 +1,7 @@
 {
-    "name": "bomo/ical-bundle",
+    "name": "lejeanbono/ical-bundle",
     "description": "Create ics url or file for Symfony 2",
-    "homepage": "http://github.com/BorisMorel/IcalBundle",
+    "homepage": "http://github.com/LeJeanbono/IcalBundle",
     "license": "MIT",
     "authors": [
         {
@@ -22,7 +22,7 @@
     "require": {
         "php": ">=5.3.3",
         "symfony/framework-bundle": "~2.1|~3.0",
-        "kigkonsult/icalcreator": "dev-master"
+        "kigkonsult/icalcreator": "~2.22.5"
     },
     "autoload": {
         "psr-4": { "BOMO\\IcalBundle\\": "" }

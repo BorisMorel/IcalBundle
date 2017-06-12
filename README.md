@@ -73,7 +73,8 @@ public function getIcs()
  - 2017/01/05 : Merge pull request #15; Now Kigkonsult is required by composer
  - 2017/04/07 : Merge pull request #18
  - 2017/06/07 : Merge pull request #20
- 
+ - 2017/06/08 : Merge pull request #19
+
 ## Actual state
 
 This bundle is in **stable** state;
@@ -100,7 +101,7 @@ or
 {
     "require": {
         "bomo/ical-bundle": "1.0.*",
-        "kigkonsult/icalcreator": "dev-master"
+        "kigkonsult/icalcreator": "~2.22.5"
     }
 }
 ```
