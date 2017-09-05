@@ -2,6 +2,8 @@
 
 namespace BOMO\IcalBundle\Model;
 
+use kigkonsult\iCalcreator\vcalendar;
+
 class Calendar
 {
     /**
@@ -17,7 +19,7 @@ class Calendar
     public function __construct(Timezone $tz)
     {
         $this->tz = $tz;
-        $this->cal = new \vcalendar();
+        $this->cal = new vcalendar();
         $this->cal->setProperty("x-wr-timezone", $tz->getTzid());
         $this->cal->addComponent($tz->getTimezone());
     }
