@@ -14,12 +14,14 @@ class Calendar
      */
     private $tz;
 
-    public function __construct(Timezone $tz)
+    public function __construct(Timezone $tz = null)
     {
-        $this->tz = $tz;
         $this->cal = new \vcalendar();
-        $this->cal->setProperty("x-wr-timezone", $tz->getTzid());
-        $this->cal->addComponent($tz->getTimezone());
+        if(isset($tz)) {
+            $this->tz = $tz;
+            $this->cal->setProperty("x-wr-timezone", $tz->getTzid());
+            $this->cal->addComponent($tz->getTimezone());
+        }
     }
 
     public function setMethod($method)
