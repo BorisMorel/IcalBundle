@@ -31,7 +31,7 @@ class Calendar
 
     public function setUniqueId($uniqId)
     {
-        $this->cal->unique_id = $uniqId;
+        $this->cal->setProperty("unique_id", $uniqId);
 
         return $this;
     }
