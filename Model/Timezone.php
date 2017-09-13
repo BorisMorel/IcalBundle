@@ -2,6 +2,8 @@
 
 namespace BOMO\IcalBundle\Model;
 
+use kigkonsult\iCalcreator\vtimezone;
+
 class Timezone
 {
     /**
@@ -22,7 +24,7 @@ class Timezone
 
     public function __construct(array $config = array(), $timezoneType = FALSE)
     {
-        $this->tz = new \vtimezone($timezoneType, $config);
+        $this->tz = new vtimezone($timezoneType, $config);
     }
 
     public function getTzid()
