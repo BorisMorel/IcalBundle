@@ -133,6 +133,13 @@ $alarm
 $event->attachAlarm($alarm);
 ```
 
+#### Outlook compatibility
+Outlook does not support the parameter "x-wr-timezone". To prevent adding it to the ics, the _createCalendar_ has a new 
+parameter for defining whether or not to include a Timezone in the ics.
+```php
+$ical = $cal = $this->provider->createCalendar(null, true);
+```
+
 ## Object reference
 
 ###Provider
