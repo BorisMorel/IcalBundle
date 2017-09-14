@@ -18,7 +18,7 @@ class IcsProvider
 
     public function createCalendar(Timezone $tz = null, $allowNullTimezone = FALSE)
     {
-        if(is_null($tz) && !$allowNullTimezone) {
+        if (is_null($tz) && false === $allowNullTimezone) {
             $tz = $this->createTimezone();
         }
         return new Calendar($tz);
