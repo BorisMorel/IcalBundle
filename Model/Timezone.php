@@ -79,7 +79,7 @@ class Timezone
      */
     public function setStandard(array $config = array()){
 
-        $this->standard  = & $this->tz->newComponent( "standard" );
+        $this->standard  = $this->tz->newComponent( "standard" );
 
         foreach($config as $prop => $value){
             $this->standard->setProperty($prop, $value);
@@ -117,7 +117,7 @@ class Timezone
      */
     public function setDaylight(array $config = array()){
 
-        $this->daylight  = & $this->tz->newComponent( "daylight" );
+        $this->daylight  = $this->tz->newComponent( "daylight" );
 
         foreach($config as $prop => $value){
             $this->daylight->setProperty($prop, $value);
