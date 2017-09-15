@@ -16,12 +16,23 @@ class Calendar
      */
     private $tz;
 
-    public function __construct(Timezone $tz)
+    /**
+     * Calendar constructor.
+     *
+     * For compatibility with Outlook, we need to allow creating calendars without Timezone. This is due to the Property
+     * "x-wr-timezone" is not supported, and using it derives in obtaining the following error:
+     * "not supported calendar message"
+     *
+     * @param Timezone|null $tz
+     */
+    public function __construct(Timezone $tz = null)
     {
-        $this->tz = $tz;
         $this->cal = new vcalendar();
-        $this->cal->setProperty("x-wr-timezone", $tz->getTzid());
-        $this->cal->addComponent($tz->getTimezone());
+        if(isset($tz)) {
+            $this->tz = $tz;
+            $this->cal->setProperty("x-wr-timezone", $tz->getTzid());
+            $this->cal->addComponent($tz->getTimezone());
+        }
     }
 
     public function setMethod($method)
