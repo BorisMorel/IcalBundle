@@ -2,6 +2,8 @@
 
 namespace BOMO\IcalBundle\Model;
 
+use kigkonsult\iCalcreator\vevent;
+
 class Event
 {
     /**
@@ -16,10 +18,10 @@ class Event
 
     public function __construct($object = null)
     {
-        if ($object instanceOf \vevent) {
+        if ($object instanceOf vevent) {
             $this->event = $object;
         } else {
-            $this->event = new \vevent();
+            $this->event = new vevent();
         }
     }
 

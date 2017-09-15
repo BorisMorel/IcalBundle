@@ -2,6 +2,8 @@
 
 namespace BOMO\IcalBundle\Model;
 
+use kigkonsult\iCalcreator\vcalendar;
+
 class Calendar
 {
     /**
@@ -25,7 +27,7 @@ class Calendar
      */
     public function __construct(Timezone $tz = null)
     {
-        $this->cal = new \vcalendar();
+        $this->cal = new vcalendar();
         if(isset($tz)) {
             $this->tz = $tz;
             $this->cal->setProperty("x-wr-timezone", $tz->getTzid());
@@ -42,7 +44,7 @@ class Calendar
 
     public function setUniqueId($uniqId)
     {
-        $this->cal->unique_id = $uniqId;
+        $this->cal->setProperty("unique_id", $uniqId);
 
         return $this;
     }

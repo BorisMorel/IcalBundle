@@ -2,6 +2,8 @@
 
 namespace BOMO\IcalBundle\Model;
 
+use kigkonsult\iCalcreator\valarm;
+
 class Alarm
 {
     /**
@@ -11,11 +13,11 @@ class Alarm
 
     public function __construct($object = null)
     {
-        if ($object instanceOf \valarm) {
+        if ($object instanceOf valarm) {
             $this->alarm = $object;
 
         } else {
-            $this->alarm = new \valarm();
+            $this->alarm = new valarm();
 
         }
 
