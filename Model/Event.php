@@ -45,7 +45,7 @@ class Event
         }
 
         $this->event->setProperty("DTEND", $this->datetimeToArray($date), $params);
-        
+
         return $this;
     }
 
@@ -65,7 +65,7 @@ class Event
 
     public function setLocation($loc)
     {
-        $this->event->setProperty('LOCATION', $loc); 
+        $this->event->setProperty('LOCATION', $loc);
 
         return $this;
     }
@@ -73,28 +73,28 @@ class Event
     public function setDescription($desc)
     {
         $this->event->setProperty('description', $desc);
- 
+
         return $this;
     }
 
     public function setComment($comment)
     {
         $this->event->setProperty('comment', $comment);
- 
+
         return $this;
     }
 
     public function setAttendee($attendee)
     {
         $this->event->setProperty('attendee', $attendee);
- 
+
         return $this;
     }
-    
+
     public function setOrganizer($organizer)
     {
         $this->event->setProperty('organizer', $organizer);
- 
+
         return $this;
     }
 
@@ -129,7 +129,7 @@ class Event
     public function setUrl($url)
     {
         $this->event->setProperty('URL', $url);
-        
+
         return $this;
     }
 
