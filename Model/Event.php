@@ -126,6 +126,13 @@ class Event
         return $this;
     }
 
+    public function setUrl($url)
+    {
+        $this->event->setProperty('URL', $url);
+        
+        return $this;
+    }
+
     public function newAlarm()
     {
         return new Alarm($this->event->newComponent('valarm'), $this->event);
