@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<phpunit bootstrap="./Tests/bootstrap.php" colors="true">
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/7.5/phpunit.xsd"
+         backupGlobals="false"
+         bootstrap="vendor/autoload.php"
+         colors="true">
     <!-- Les fichiers de tests à lancer -->
     <testsuites>
         <testsuite name="BOMOIcalBundle test suite">
@@ -17,7 +21,6 @@
             <directory>./</directory>
             <exclude>
                 <directory>./Resources</directory>
-                <directory>./Tests</directory>
                 <directory>./vendor</directory>
             </exclude>
         </whitelist>

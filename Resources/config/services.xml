@@ -7,9 +7,9 @@
   <parameters>
     <parameter key="bomo_ical.ics_provider.class">BOMO\IcalBundle\Provider\IcsProvider</parameter>
   </parameters>
-  
+
   <services>
-    <service id="bomo_ical.ics_provider" class="%bomo_ical.ics_provider.class%" />
+    <service id="bomo_ical.ics_provider" class="%bomo_ical.ics_provider.class%" public="true"/>
   </services>
 
 </container>
