@@ -91,29 +91,6 @@ Add BOMOIcalBundle in your composer.json
 }
 ```
 
-**Note:**
-> Kigkonsult is require on version `dev-master`. You need to change your `minimum-stability` or require explicitly `kigkonsult/icalcreator` to prevent composer dependencies errors.
-
-```js
-{
-    "require": {
-        "bomo/ical-bundle": "1.0.*"
-    },
-    "minimum-stability": "dev"
-}
-```
-
-or
-
-```js
-{
-    "require": {
-        "bomo/ical-bundle": "1.0.*",
-        "kigkonsult/icalcreator": "dev-master"
-    }
-}
-```
-
 Now tell composer to download the bundle by running the step:
 
 ``` bash
