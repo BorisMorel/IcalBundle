@@ -164,7 +164,7 @@ class Event
         $date['sec'] = $date['second'];
         unset($date['minute'], $date['second']);
 
-        $date['tz'] = 'Z';
+        $date['tz'] = $datetime->format('e');
 
         return $date;
     }
