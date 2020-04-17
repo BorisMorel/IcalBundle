@@ -2,7 +2,7 @@
 
 namespace BOMO\IcalBundle\Model;
 
-use kigkonsult\iCalcreator\vevent;
+use Kigkonsult\Icalcreator\Vevent;
 
 class Event
 {
@@ -18,10 +18,10 @@ class Event
 
     public function __construct($object = null)
     {
-        if ($object instanceOf vevent) {
+        if ($object instanceOf Vevent) {
             $this->event = $object;
         } else {
-            $this->event = new vevent();
+            $this->event = new Vevent();
         }
     }
 
@@ -32,7 +32,7 @@ class Event
             $params = array("VALUE" => "DATE");
         }
 
-        $this->event->setProperty("DTSTART", $this->datetimeToArray($date), $params);
+        $this->event->setDtstart($date, $params);
 
         return $this;
     }
@@ -44,7 +44,7 @@ class Event
             $params = array("VALUE" => "DATE");
         }
 
-        $this->event->setProperty("DTEND", $this->datetimeToArray($date), $params);
+        $this->event->setDtend($date, $params);
 
         return $this;
     }
@@ -58,84 +58,84 @@ class Event
 
     public function setName($name)
     {
-        $this->event->setProperty('summary', $name);
+        $this->event->setSummary($name);
 
         return $this;
     }
 
     public function setLocation($loc)
     {
-        $this->event->setProperty('LOCATION', $loc);
+        $this->event->setLocation($loc);
 
         return $this;
     }
 
     public function setDescription($desc)
     {
-        $this->event->setProperty('description', $desc);
+        $this->event->setDescription($desc);
 
         return $this;
     }
 
     public function setComment($comment)
     {
-        $this->event->setProperty('comment', $comment);
+        $this->event->setComment($comment);
 
         return $this;
     }
 
     public function setAttendee($attendee)
     {
-        $this->event->setProperty('attendee', $attendee);
+        $this->event->setAttendee($attendee);
 
         return $this;
     }
 
     public function setOrganizer($organizer)
     {
-        $this->event->setProperty('organizer', $organizer);
+        $this->event->setOrganizer($organizer);
 
         return $this;
     }
 
     public function setStatus($status)
     {
-        $this->event->setProperty('status', $status);
+        $this->event->setStatus($status);
 
         return $this;
     }
 
     public function setTransparent($name)
     {
-        $this->event->setProperty('TRANSP', $name);
+        $this->event->setTransp($name);
 
         return $this;
     }
 
     public function setPriority($value)
     {
-        $this->event->setProperty('PRIORITY', $value);
+        $this->event->setPriority($value);
 
         return $this;
     }
 
     public function setSequence($value)
     {
-        $this->event->setProperty('SEQUENCE', $value);
+        $this->event->setSequence($value);
 
         return $this;
     }
 
     public function setUrl($url)
     {
-        $this->event->setProperty('URL', $url);
+        $this->event->setUrl($url);
 
         return $this;
     }
 
     public function newAlarm()
     {
-        return new Alarm($this->event->newComponent('valarm'), $this->event);
+        return new Alarm($this->event->newValarm(), $this->event);
     }
 
     public function attachAlarm(Alarm $alarm)
@@ -145,9 +145,11 @@ class Event
         return $this;
     }
 
-    public function getProperty($prop)
+    public function __call($name, $arguments)
     {
-        return $this->event->getProperty($prop);
+        if (method_exists($this->event, $name)) {
+            return call_user_func_array(array($this->event, $name), $arguments);
+        }
     }
 
     public function getEvent()

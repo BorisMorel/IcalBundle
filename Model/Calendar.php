@@ -2,7 +2,8 @@
 
 namespace BOMO\IcalBundle\Model;
 
-use kigkonsult\iCalcreator\vcalendar;
+use Kigkonsult\Icalcreator\IcalInterface;
+use Kigkonsult\Icalcreator\Vcalendar;
 
 class Calendar
 {
@@ -27,45 +28,45 @@ class Calendar
      */
     public function __construct(Timezone $tz = null)
     {
-        $this->cal = new vcalendar();
+        $this->cal = new Vcalendar();
         if(isset($tz)) {
             $this->tz = $tz;
-            $this->cal->setProperty("x-wr-timezone", $tz->getTzid());
+            $this->cal->setXprop(IcalInterface::X_WR_TIMEZONE, $tz->getTzid());
             $this->cal->addComponent($tz->getTimezone());
         }
     }
 
     public function setMethod($method)
     {
-        $this->cal->setProperty("method", $method);
+        $this->cal->setMethod($method);
 
         return $this;
     }
 
     public function setUniqueId($uniqId)
     {
-        $this->cal->setProperty("unique_id", $uniqId);
+        $this->cal->setUid($uniqId);
 
         return $this;
     }
 
     public function setName($name)
     {
-        $this->cal->setProperty("x-wr-calname", $name);
-        
+        $this->cal->setXprop(IcalInterface::X_WR_CALNAME, $name);
+
         return $this;
     }
-    
+
     public function setDescription($desc)
     {
-        $this->cal->setProperty("x-wr-caldesc", $desc);
+        $this->cal->setXprop(IcalInterface::X_WR_CALDESC, $desc);
 
         return $this;
     }
 
     public function newEvent()
     {
-        return new Event($this->cal->newComponent('vevent'));
+        return new Event($this->cal->newVevent());
     }
 
     public function attachEvent(Event $event)
@@ -86,7 +87,7 @@ class Calendar
 
         if (false === mb_check_encoding($str, 'UTF-8')) {
             $str = utf8_encode($str);
-        } 
+        }
 
         return $str;
     }

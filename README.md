@@ -14,7 +14,7 @@ public function getIcs()
     $tz = $provider->createTimezone();
     $tz
         ->setTzid('Europe/Paris')
-        ->setProperty('X-LIC-LOCATION', $tz->getTzid())
+        ->setXProp('X-LIC-LOCATION', $tz->getTzid())
         ;
 
     $cal = $provider->createCalendar($tz);
@@ -38,7 +38,7 @@ public function getIcs()
     $alarm = $event->newAlarm();
     $alarm
         ->setAction('DISPLAY')
-        ->setDescription($event->getProperty('description'))
+        ->setDescription($event->getDescription())
         ->setTrigger('-PT2H') //See Dateinterval string format
         ;
 
@@ -134,7 +134,7 @@ $event->attachAlarm($alarm);
 ```
 
 #### Outlook compatibility
-Outlook does not support the parameter "x-wr-timezone". To prevent adding it to the ics, the _createCalendar_ has a new 
+Outlook does not support the parameter "x-wr-timezone". To prevent adding it to the ics, the _createCalendar_ has a new
 parameter for defining whether or not to include a Timezone in the ics.
 ```php
 $ical = $cal = $this->provider->createCalendar(null, true);
@@ -157,7 +157,6 @@ Alarm function createAlarm();
 Timezone function __construct(array $config=null);
 string function getTzid();
 this function setTzid($tz);
-this function setProperty($name, $value);
 vtimezone function getTimezone();
 ```
 
@@ -190,7 +189,6 @@ this function setAttendee($attendee);
 this function setOrganizer($org);
 Alarm function newAlarm(); //Directly attached to this Event
 this function attachAlarm(Alarm $alarm);
-mixed function getProperty($prop);
 vevent function getEvent();
 ```
 

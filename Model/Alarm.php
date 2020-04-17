@@ -2,7 +2,7 @@
 
 namespace BOMO\IcalBundle\Model;
 
-use kigkonsult\iCalcreator\valarm;
+use Kigkonsult\ICalcreator\Valarm;
 
 class Alarm
 {
@@ -13,11 +13,11 @@ class Alarm
 
     public function __construct($object = null)
     {
-        if ($object instanceOf valarm) {
+        if ($object instanceOf Valarm) {
             $this->alarm = $object;
 
         } else {
-            $this->alarm = new valarm();
+            $this->alarm = new Valarm();
 
         }
 
@@ -27,8 +27,8 @@ class Alarm
     {
         switch($action) {
         case 'DISPLAY':
-            $this->alarm->setProperty('description', 'Need to be setted');
-            $this->alarm->setProperty('trigger', '-PT1H', array('VALUE' => 'DURATION'));
+            $this->alarm->setDescription('Need to be setted');
+            $this->alarm->setTrigger('-PT1H', array('VALUE' => 'DURATION'));
             break;
 
         default:
@@ -36,21 +36,21 @@ class Alarm
             break;
         }
 
-        $this->alarm->setProperty('action', $action);
+        $this->alarm->setAction($action);
 
         return $this;
     }
 
     public function setDescription($desc)
     {
-        $this->alarm->setProperty('description', $desc);
+        $this->alarm->setDescription($desc);
 
         return $this;
     }
 
     public function setTrigger($str)
     {
-        $this->alarm->setProperty('trigger', $str, array('VALUE' => 'DURATION'));
+        $this->alarm->setTrigger($str, array('VALUE' => 'DURATION'));
 
         return $this;
     }

@@ -2,7 +2,7 @@
 
 namespace BOMO\IcalBundle\Model;
 
-use kigkonsult\iCalcreator\vtimezone;
+use Kigkonsult\Icalcreator\Vtimezone;
 
 class Timezone
 {
@@ -24,26 +24,27 @@ class Timezone
 
     public function __construct(array $config = array(), $timezoneType = FALSE)
     {
-        $this->tz = new vtimezone($timezoneType, $config);
+        $this->tz = new Vtimezone($timezoneType, $config);
     }
 
     public function getTzid()
     {
-        return $this->tz->getProperty('tzid');
+        return $this->tz->getTzid();
     }
 
     public function setTzid($tzid)
     {
-        $this->tz->setProperty('tzid', $tzid);
+        $this->tz->setTzid($tzid);
+
 
         return $this;
     }
 
-    public function setProperty($prop, $value)
+    public function __call($name, $arguments)
     {
-        $this->tz->setProperty($prop, $value);
-
-        return $this;
+        if (method_exists($this->tz, $name)) {
+            return call_user_func_array(array($this->tz, $name), $arguments);
+        }
     }
 
     public function getTimezone()
@@ -79,11 +80,9 @@ class Timezone
      */
     public function setStandard(array $config = array()){
 
-        $this->standard  = $this->tz->newComponent( "standard" );
+        $this->standard  = $this->tz->newStandard();
 
-        foreach($config as $prop => $value){
-            $this->standard->setProperty($prop, $value);
-        }
+        $this->standard->setConfig($config);
 
         return $this;
     }
@@ -117,11 +116,8 @@ class Timezone
      */
     public function setDaylight(array $config = array()){
 
-        $this->daylight  = $this->tz->newComponent( "daylight" );
-
-        foreach($config as $prop => $value){
-            $this->daylight->setProperty($prop, $value);
-        }
+        $this->daylight  = $this->tz->newDaylight();
+        $this->daylight->setConfig($config);
 
         return $this;
     }
