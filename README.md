@@ -3,6 +3,10 @@ BOMOIcalBundle
 
 This bundle is used to create an ics file or url to populate a shared calendar with events.
 
+## Caution
+
+Release 2.0 introduce new major version of kigkonsult.
+
 ## Overview
 
 ```php
@@ -67,17 +71,12 @@ public function getIcs()
 
 ## Versions
 
- - 2013/10/01 : first version
- - 2013/10/02 : Fix issue #2
- - 2013/10/07 : Fix issue #1
- - 2017/01/05 : Merge pull request #15; Now Kigkonsult is required by composer
- - 2017/04/07 : Merge pull request #18
- - 2017/06/07 : Merge pull request #20
- - 2017/06/08 : Merge pull request #19
+ - Release 1.0: Kigkonsult 2.24
+ - Release 2.0: Kigkonsult >2.24 with majors changes
 
 ## Actual state
 
-This bundle is in **stable** state;
+This bundle is in **stable** state with release 1.0;
 
 ## Installation
 
