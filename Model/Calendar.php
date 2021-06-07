@@ -32,7 +32,7 @@ class Calendar
         if(isset($tz)) {
             $this->tz = $tz;
             $this->cal->setXprop(IcalInterface::X_WR_TIMEZONE, $tz->getTzid());
-            $this->cal->addComponent($tz->getTimezone());
+            $this->cal->setComponent($tz->getTimezone());
         }
     }
 
