@@ -141,7 +141,7 @@ $ical = $cal = $this->provider->createCalendar(null, true);
 
 ## Object reference
 
-###Provider
+### Provider
 ```php
 Timezone function createTimezone();
 Calendar function createCalendar();
