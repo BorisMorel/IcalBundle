@@ -151,7 +151,7 @@ Alarm function createAlarm();
 
 * * * * *
 
-###Timezone
+### Timezone
 ```php
 Timezone function __construct(array $config=null);
 string function getTzid();
@@ -161,7 +161,7 @@ vtimezone function getTimezone();
 
 * * * * *
 
-###Calendar
+### Calendar
 ```php
 Calendar function __construct(array $config);
 this function setName($name);
@@ -174,7 +174,7 @@ vcalendar function getCalendar();
 
 * * * * *
 
-###Event
+### Event
 ```php
 Event function __construct(mixed $param);
 this function setStartDate(Datetime $date);
@@ -193,7 +193,7 @@ vevent function getEvent();
 
 * * * * *
 
-###Alarm
+### Alarm
 ```php
 Alarm function __construct(mixed $param);
 this function setAction($action); //Currently, only 'DISPLAY' action is setted.
