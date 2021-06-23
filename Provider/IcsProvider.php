@@ -11,9 +11,9 @@ use BOMO\IcalBundle\Model\Timezone,
 
 class IcsProvider
 {
-    public function createTimezone(array $config = array(), $timezoneType = FALSE)
+    public function createTimezone(array $config = array())
     {
-        return new Timezone($config, $timezoneType);
+        return new Timezone($config);
     }
 
     public function createCalendar(Timezone $tz = null, $allowNullTimezone = FALSE)
