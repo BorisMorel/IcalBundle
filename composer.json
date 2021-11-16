@@ -26,11 +26,6 @@
     "autoload": {
         "psr-4": { "BOMO\\IcalBundle\\": "" }
     },
-    "extra": {
-        "branch-alias": {
-            "dev-master": "1.1.x-dev"
-        }
-    },
     "require-dev": {
         "symfony/http-kernel": "^2.0|^3.0|^4.0",
         "symfony/dependency-injection": "^2.0|^3.0|^4.0",
